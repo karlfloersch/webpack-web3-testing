@@ -20,7 +20,7 @@ const cb = (err, result) => {
 }
 web3.eth.getAccounts(cb)
 
-import contractJSON from '!!json!./loaders/solc-loader.js!./contracts/SimpleStorage.sol'
+import contractJSON from '!./loaders/eth-deploy-loader.js!./loaders/solc-loader.js!./contracts/SimpleStorage.sol'
 import {} from './app.css'
 
 // Verify that we got the contract back in a json form

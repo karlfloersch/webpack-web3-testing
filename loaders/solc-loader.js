@@ -5,8 +5,8 @@ module.exports = function (contract) {
   this.cacheable()
 
   // Compile the contract and return a JSON representation
-  var compiledContractJSON = solc.compile(contract, 1)
+  var compiledContractsJSON = solc.compile(contract, 1)
 
   // Return a string version of the contract
-  return JSON.stringify(compiledContractJSON)
+  return JSON.stringify(compiledContractsJSON)
 }
