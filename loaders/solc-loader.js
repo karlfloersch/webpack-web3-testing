@@ -1,16 +1,12 @@
-var Pudding = require('ether-pudding')
-var PuddingGenerator = require('ether-pudding/generator')
+var solc = require('solc')
 
-module.exports = function (compiledSolObj) {
-  console.log(Pudding)
-  console.log(PuddingGenerator)
-  console.log('TEST TEST TEST\nTEST TEST TEST\nTEST TEST TEST\nTEST TEST TEST\n')
+module.exports = function (contract) {
+  // Set contracts to be cacheable
   this.cacheable()
-  var classContracts = ''
-  // for (var contractName in compiledSolObj.contracts) {
-  //   console.log('compiled: ' + contractName)
-  //   var inputCompiled = compiledSolObj.contracts[contractName]
-  //   classContracts += PuddingGenerator.generate(contractName, inputCompiled)
-  // }
-  return classContracts // {'one': 'see the gun', 'two': 'who are you'}
+
+  // Compile the contract and return a JSON representation
+  var compiledContractJSON = solc.compile(contract, 1)
+
+  // Return a string version of the contract
+  return JSON.stringify(compiledContractJSON)
 }

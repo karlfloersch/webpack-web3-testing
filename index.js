@@ -6,24 +6,25 @@ import createBrowserHistory from 'history/lib/createBrowserHistory'
 import Web3 from 'web3'
 import Pudding from 'ether-pudding'
 
-// Set the provider, as you would normally.
+// Set the provider
 var web3 = new Web3()
 Pudding.setWeb3(web3)
 web3.setProvider(new Web3.providers.HttpProvider('http://localhost:8545'))
 
-// console.log(web3)
+// Verify that we are getting a list of all the accounts
 const cb = (err, result) => {
   if (err) {
     console.log(err)
   }
   console.log(result)
 }
-console.log(web3.eth.getAccounts(cb))
+web3.eth.getAccounts(cb)
 
-import test from './contracts/SimpleStorage.sol'
+import contractJSON from '!!json!./loaders/solc-loader.js!./contracts/SimpleStorage.sol'
 import {} from './app.css'
 
-console.log(test)
+// Verify that we got the contract back in a json form
+console.log(contractJSON)
 
 var App = React.createClass({
   render: function () {
