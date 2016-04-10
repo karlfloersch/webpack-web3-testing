@@ -3,30 +3,12 @@ import { render } from 'react-dom'
 import { Router, Route, Link, IndexRoute } from 'react-router'
 import createBrowserHistory from 'history/lib/createBrowserHistory'
 
-import Web3 from 'web3'
-import Pudding from 'ether-pudding'
-
-// Set the provider
-var web3 = new Web3()
-Pudding.setWeb3(web3)
-web3.setProvider(new Web3.providers.HttpProvider('http://localhost:8545'))
-
-// Verify that we are getting a list of all the accounts
-const cb = (err, result) => {
-  if (err) {
-    console.log(err)
-  }
-  console.log(result)
-}
-web3.eth.getAccounts(cb)
-
-import contractJSON from '!./loaders/eth-deploy-loader.js!./loaders/solc-loader.js!./contracts/SimpleStorage.sol'
 import {} from './app.css'
 
-// Verify that we got the contract back in a json form
-console.log(contractJSON)
-
 var App = React.createClass({
+  propTypes: {
+    children: React.PropTypes.element.isRequired
+  },
   render: function () {
     return (
       <div>
@@ -37,6 +19,7 @@ var App = React.createClass({
             <li><Link to='/calendar'>Calendar</Link></li>
           </ul>
         </header>
+        {this.props.children}
       </div>
     )
   }
