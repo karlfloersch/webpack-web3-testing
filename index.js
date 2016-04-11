@@ -3,7 +3,11 @@ import { render } from 'react-dom'
 import { Router, Route, Link, IndexRoute } from 'react-router'
 import createBrowserHistory from 'history/lib/createBrowserHistory'
 
+import test from '!./loaders/truffle-loader.js!./contracts/SimpleStorage.sol'
+import test2 from '!./loaders/truffle-loader.js!./contracts/PimpleStorage.sol'
 import {} from './app.css'
+console.log(test)
+console.log(test2)
 
 var App = React.createClass({
   propTypes: {
