@@ -17,7 +17,7 @@ module.exports = {
       { test: /\.css$/, loader: 'style-loader!css-loader' },
       { test: /\.js[x]?$/, exclude: /node_modules/, loader: 'babel-loader?presets[]=es2015&presets[]=react' },
       { test: /\.json$/, loader: 'json' },
-      { test: /\.sol$/, exclude: /node_modules/, loader: path.join(__dirname, '!./loaders/eth-deploy-loader.js') }
+      { test: /\.sol$/, exclude: /node_modules/, loader: path.join(__dirname, './loaders/truffle-loader.js') }
     ]
   },
   plugins: [
