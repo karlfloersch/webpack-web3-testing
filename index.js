@@ -7,6 +7,7 @@ import Web3 from 'web3'
 import Pudding from 'ether-pudding'
 import SimpleStorage from './contracts/SimpleStorage.sol'
 
+console.log('podle')
 // Preform the normal web3 configurations
 var web3 = new Web3()
 web3.setProvider(new web3.providers.HttpProvider('http://localhost:8545'))
@@ -15,7 +16,7 @@ Pudding.setWeb3(web3)
 // Set the provider, as you would normally.
 
 SimpleStorage.load(Pudding)
-var simpleSotrage = SimpleStorage.deployed()
+// var simpleSotrage = SimpleStorage.deployed()
 
 var App = React.createClass({
   propTypes: {
@@ -26,9 +27,8 @@ var App = React.createClass({
       <div>
         <header>
           <ul>
-            <li><Link to='/app'>Dashboard</Link></li>
-            <li><Link to='/inbox'>Inbox</Link></li>
-            <li><Link to='/calendar'>Calendar</Link></li>
+            <li><Link to='/simplestorage'>SimpleStorage</Link></li>
+            <li><Link to='/pimplestorage'>PimpleStorage</Link></li>
           </ul>
         </header>
         {this.props.children}
@@ -37,31 +37,21 @@ var App = React.createClass({
   }
 })
 
-var Dashboard = React.createClass({
+var SimpleStorageView = React.createClass({
   render: function () {
     return (
       <div>
-        <p>Dashboard</p>
+        <p>SimpleStorage</p>
       </div>
     )
   }
 })
 
-var Inbox = React.createClass({
+var PimpleStorageView = React.createClass({
   render: function () {
     return (
       <div>
-        <p>Inbox</p>
-      </div>
-    )
-  }
-})
-
-var Calendar = React.createClass({
-  render: function () {
-    return (
-      <div>
-        <p>Calendar</p>
+        <p>PimpleStorage</p>
       </div>
     )
   }
@@ -69,14 +59,15 @@ var Calendar = React.createClass({
 
 let history = createBrowserHistory()
 
+console.log(document.getElementById('root'))
 render((
   <Router history={history}>
     <Route path='/' component={App}>
-      <IndexRoute component={Dashboard}/>
-      <Route path='app' component={Dashboard}/>
-      <Route path='inbox' component={Inbox}/>
-      <Route path='calendar' component={Calendar}/>
-      <Route path='*' component={Dashboard}/>
+      <IndexRoute component={SimpleStorageView}/>
+      <Route path='simplesotrage' component={SimpleStorageView}/>
+      <Route path='pimplestorage' component={PimpleStorageView}/>
+      <Route path='*' component={SimpleStorageView}/>
     </Route>
   </Router>
-), document.body)
+
+), document.getElementById('root'))
