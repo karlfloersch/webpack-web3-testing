@@ -16,7 +16,7 @@ Pudding.setWeb3(web3)
 // Set the provider, as you would normally.
 
 SimpleStorage.load(Pudding)
-// var simpleSotrage = SimpleStorage.deployed()
+var simpleStorage = SimpleStorage.deployed()
 
 var App = React.createClass({
   propTypes: {
@@ -38,10 +38,41 @@ var App = React.createClass({
 })
 
 var SimpleStorageView = React.createClass({
+  getInitialState: function () {
+    return {simpleStorageVal: 100, inputVal: ''}
+  },
+  getSimpleStorage: function () {
+    const self = this
+    simpleStorage.get().then(function (tx) {
+      self.setState({simpleStorageVal: tx.toNumber()})
+    })
+  },
+  setSimpleStorage: function () {
+    // const val = parseInt(this.state.inputVal)
+    // console.log(val)
+    // simpleStorage.set(5).then(function (tx) {
+    //   console.log('in here!')
+    //   console.log(tx)
+    // }).catch(function (err) {
+    //   console.log(err)
+    // })
+  },
+  handleChange (event) {
+    const text = event.target.value
+    this.setState({inputVal: text})
+  },
   render: function () {
     return (
       <div>
         <p>SimpleStorage</p>
+        <div>
+          <input type='button' value='Get SimpleStorage' onClick={this.getSimpleStorage}/>
+          <span> {this.state.simpleStorageVal}</span>
+        </div>
+        <div>
+          <input type='button' value='Set SimpleStorage' onClick={this.setSimpleStorage}/>
+          <input onChange={this.handleChange} value={this.state.inputVal}/>
+        </div>
       </div>
     )
   }
@@ -59,12 +90,11 @@ var PimpleStorageView = React.createClass({
 
 let history = createBrowserHistory()
 
-console.log(document.getElementById('root'))
 render((
   <Router history={history}>
     <Route path='/' component={App}>
       <IndexRoute component={SimpleStorageView}/>
-      <Route path='simplesotrage' component={SimpleStorageView}/>
+      <Route path='simplestorage' component={SimpleStorageView}/>
       <Route path='pimplestorage' component={PimpleStorageView}/>
       <Route path='*' component={SimpleStorageView}/>
     </Route>

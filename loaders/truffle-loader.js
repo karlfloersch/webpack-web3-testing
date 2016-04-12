@@ -82,9 +82,6 @@ function done (source, callback) {
   var targetContract = getContractClass(source)
   var compiledContract = PuddingGenerator.generate(targetContract, classes[targetContract])
 
-  // For testing, print out the compiled contract
-  console.log(compiledContract)
-
   callback(null, compiledContract)
 }
 
