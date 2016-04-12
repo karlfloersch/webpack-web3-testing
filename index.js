@@ -2,21 +2,20 @@ import React from 'react'
 import { render } from 'react-dom'
 import { Router, Route, Link, IndexRoute } from 'react-router'
 import createBrowserHistory from 'history/lib/createBrowserHistory'
+import {} from './app.css'
+import Web3 from 'web3'
+import Pudding from 'ether-pudding'
+import SimpleStorage from './contracts/SimpleStorage.sol'
 
-// Import and set up web3 and pudding
-var Web3 = require('web3')
+// Preform the normal web3 configurations
 var web3 = new Web3()
-var Pudding = require('ether-pudding')
+web3.setProvider(new web3.providers.HttpProvider('http://localhost:8545'))
 Pudding.setWeb3(web3)
 
 // Set the provider, as you would normally.
-web3.setProvider(new Web3.providers.HttpProvider('http://localhost:8545'))
 
-import test from './contracts/SimpleStorage.sol'
-import test2 from './contracts/PimpleStorage.sol'
-import {} from './app.css'
-console.log(test2.load(Pudding))
-console.log(test.load(Pudding))
+SimpleStorage.load(Pudding)
+var simpleSotrage = SimpleStorage.deployed()
 
 var App = React.createClass({
   propTypes: {
