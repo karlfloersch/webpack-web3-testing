@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/karlfloersch/webpack-web3-testing.png?label=ready&title=Ready)](https://waffle.io/karlfloersch/webpack-web3-testing)
 # Webpack Solidity Loaders
 This repository will be a testing ground for
 loaders which will be broken out into separate
