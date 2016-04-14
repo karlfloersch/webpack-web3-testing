@@ -7,7 +7,6 @@ import Web3 from 'web3'
 import Pudding from 'ether-pudding'
 import SimpleStorage from './contracts/SimpleStorage.sol'
 
-console.log('podle')
 // Preform the normal web3 configurations
 var web3 = new Web3()
 web3.setProvider(new web3.providers.HttpProvider('http://localhost:8545'))
@@ -28,7 +27,6 @@ var App = React.createClass({
         <header>
           <ul>
             <li><Link to='/simplestorage'>SimpleStorage</Link></li>
-            <li><Link to='/pimplestorage'>PimpleStorage</Link></li>
           </ul>
         </header>
         {this.props.children}
@@ -39,7 +37,7 @@ var App = React.createClass({
 
 var SimpleStorageView = React.createClass({
   getInitialState: function () {
-    return {simpleStorageVal: 100, inputVal: ''}
+    return {simpleStorageVal: '0', inputVal: ''}
   },
   getSimpleStorage: function () {
     const self = this
@@ -48,14 +46,16 @@ var SimpleStorageView = React.createClass({
     })
   },
   setSimpleStorage: function () {
-    // const val = parseInt(this.state.inputVal)
+    const self = this
+    const val = parseInt(this.state.inputVal)
     // console.log(val)
-    // simpleStorage.set(5).then(function (tx) {
-    //   console.log('in here!')
-    //   console.log(tx)
-    // }).catch(function (err) {
-    //   console.log(err)
-    // })
+    simpleStorage.set(val, {from: web3.eth.accounts[0]}).then(function (tx) {
+      self.setState({inputVal: ''})
+      console.log(tx)
+    }).catch(function (err) {
+      self.setState({inputVal: err})
+      console.error(err)
+    })
   },
   handleChange (event) {
     const text = event.target.value
@@ -78,16 +78,6 @@ var SimpleStorageView = React.createClass({
   }
 })
 
-var PimpleStorageView = React.createClass({
-  render: function () {
-    return (
-      <div>
-        <p>PimpleStorage</p>
-      </div>
-    )
-  }
-})
-
 let history = createBrowserHistory()
 
 render((
@@ -95,7 +85,6 @@ render((
     <Route path='/' component={App}>
       <IndexRoute component={SimpleStorageView}/>
       <Route path='simplestorage' component={SimpleStorageView}/>
-      <Route path='pimplestorage' component={PimpleStorageView}/>
       <Route path='*' component={SimpleStorageView}/>
     </Route>
   </Router>
