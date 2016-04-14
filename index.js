@@ -12,9 +12,9 @@ var web3 = new Web3()
 web3.setProvider(new web3.providers.HttpProvider('http://localhost:8545'))
 Pudding.setWeb3(web3)
 
-// Set the provider, as you would normally.
-
+// Load our contract, giving it the Pudding object (standard pudding stuff)
 SimpleStorage.load(Pudding)
+// Create our Pudding contract object
 var simpleStorage = SimpleStorage.deployed()
 
 var App = React.createClass({
