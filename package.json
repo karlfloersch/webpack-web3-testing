@@ -1,14 +1,14 @@
 {
-  "name": "webpack-demos",
+  "name": "webpack-web3-testing",
   "version": "1.0.0",
-  "description": "a collection of simple demos of Webpack",
+  "description": "A testing ground for the truffle-loader",
   "main": "index.js",
   "keywords": [
     "build",
     "demo",
     "webpack"
   ],
-  "author": "Ruan Yifeng",
+  "author": "Karl Floersch",
   "license": "MIT",
   "dependencies": {
     "babel-core": "~6.0.20",
