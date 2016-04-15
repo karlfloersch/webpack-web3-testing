@@ -10,8 +10,7 @@ module.exports = {
     "images/": "images/"
   },
   deploy: [
-    "SimpleStorage",
-    "PimpleStorage"
+    "SimpleStorage"
   ],
   rpc: {
     host: "localhost",
